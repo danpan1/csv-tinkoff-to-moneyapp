@@ -7,8 +7,10 @@ import {Iconv} from 'iconv';
 import {dataParse} from './transformData';
 import * as parseType from '@types/csv-parse';
 import { parsedCategory} from "../constants/headers";
+import {IdataAllLength} from "../iterfaces/interfaces";
 
 const csvData = [];
+const dataAllLength:IdataAllLength = {count : 0};
 const options: parseType.Options = {
     delimiter: ';',
     auto_parse_date: true,
@@ -24,12 +26,17 @@ export function writeToFile(filePath: string, data: string, err?: any): void {
     });
 }
 
-export const writeCSVtoFile = (outputPath: string, data: any) => (): void => {
+export const writeCSVtoFile = (outputPath: string, data: any, dataAllLength: IdataAllLength) => (): void => {
     const jsonOutput = outputPath.replace('test', 'testJSON');
     const notParsedCSVpath = outputPath.replace('test', 'testNotParsed');
     const notParsedData = data.filter(item => !item[parsedCategory]);
     const parsedData = data.filter(item => item[parsedCategory]);
-    console.log(data.length, notParsedData.length);
+    console.log('Transactions', {
+        total : dataAllLength.count,
+        parsed : notParsedData.length,
+        notParsed : parsedData.length,
+        removed : dataAllLength.count - data.length,
+    });
     writeToFile(jsonOutput, JSON.stringify(notParsedData, null, 2));
 
     stringify(parsedData, {
@@ -54,7 +61,7 @@ export function tinkoffToMoneyCSV(inputPath: string, outputPath: string): void {
         //parse csv
         .pipe(parse(options))
         //perform transform with 1 data object
-        .on('data', dataParse(csvData))
+        .on('data', dataParse(csvData, dataAllLength))
         // writeToFile
-        .on('end', writeCSVtoFile(outputPath, csvData));
+        .on('end', writeCSVtoFile(outputPath, csvData, dataAllLength));
 }

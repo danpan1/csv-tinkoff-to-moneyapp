@@ -1,4 +1,7 @@
-// Дата операции;Дата платежа;Номер карты;Статус;Сумма операции;Валюта операции;Сумма платежа;Валюта платежа;Кэшбэк;Категория;MCC;Описание;Бонусы (включая кэшбэк)
+/**
+ * Created by Danpan on 08.04.17.
+ */
+
 export interface MoneyAppImport {
     "Дата операции": string,
     "Сумма операции": number,
@@ -9,10 +12,13 @@ export interface MoneyAppImport {
     "Наличность": string,
     "Тип транзакции": string
 }
+export interface IdataAllLength {
+    count: number
+}
 
-export interface IdValue{
-    id:string;
-    value:string;
+export interface IdValue {
+    id: string;
+    value: string;
 }
 
 export interface TinkoffExportCSV {
@@ -29,6 +35,4 @@ export interface TinkoffExportCSV {
     "MCC": string,            // ""
     "Описание": string,       // "Карина тиньков"
     "Бонусы (включая кэшбэк)": number, // "0,00
-}/**
- * Created by Danpan on 08.04.17.
- */
+}

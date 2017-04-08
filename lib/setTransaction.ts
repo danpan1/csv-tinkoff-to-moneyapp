@@ -10,7 +10,6 @@ const Karina_tinkoff_nalichnost = 'Карина тиньков';
 const Nalichnue_nalichnost = 'Наличные';
 const Alfa_forex_nalichnonst = 'Альфа форекс';
 const Alfa_bank_run_nalichnost = 'Альфа банк руб';
-let i = 0;
 
 const notHiddenTransactions = false;
 export function setTransaction(data) {
@@ -35,7 +34,6 @@ export function setTransaction(data) {
     } else {
         data["Тип транзакции"] = "Доход";
         setDohod(data);
-        console.log(i++);
         // data[parsedCategory] = true;
     }
 }
