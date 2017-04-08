@@ -1,0 +1,1 @@
+# csv-tinkoff-to-moneyapp
