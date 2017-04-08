@@ -1,0 +1,19 @@
+{
+  "name": "csv-tinkoff-to-moneyapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv": "^1.1.1",
+    "iconv": "^2.2.3",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "@types/csv-parse": "^1.1.8"
+  }
+}
